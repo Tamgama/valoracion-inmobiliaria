@@ -35,9 +35,9 @@ Cumple con el **RGPD** y la **LOPDGDD**.
 
 ## 📂 Estructura del proyecto
 
-/static → Archivos estáticos (CSS, JS, imágenes)
-/templates → Plantillas HTML con Jinja2
-/app.py → Lógica principal del servidor Flask
-/models.py → Definición de las tablas de la base de datos
-/forms/ → Formularios de entrada de datos
-/utils/ → Funciones auxiliares (Catastro, validaciones, etc.)
+- /static → Archivos estáticos (CSS, JS, imágenes)
+- /templates → Plantillas HTML con Jinja2
+- /app.py → Lógica principal del servidor Flask
+- /models.py → Definición de las tablas de la base de datos
+- /forms/ → Formularios de entrada de datos
+- /utils/ → Funciones auxiliares (Catastro, validaciones, etc.)
