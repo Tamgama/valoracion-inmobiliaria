@@ -1,0 +1,328 @@
+/* PERFIL Y MENÚ */
+.perfil-menu {
+  position: relative;
+}
+
+.btn-perfil {
+  background-color: #f4c542;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.icono-cliente {
+  display: flex;
+  align-items: center;
+}
+
+.btn-perfil:hover {
+  background-color: #af8d03;
+  transform: scale(1.05);
+}
+
+.nombre-usuario {
+  display: inline-block;
+}
+
+@media (max-width: 600px) {
+  .nombre-usuario {
+    display: none;
+  }
+}
+
+.menu-perfil {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 100;
+  min-width: 220px;
+  transition: all 0.2s ease;
+}
+
+.menu-perfil ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-perfil ul li {
+  margin-bottom: 5px;
+}
+
+.menu-perfil ul li:last-child {
+  margin-bottom: 0;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.menu-perfil ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.menu-perfil ul li a:hover {
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+.menu-perfil ul li:last-child a {
+  color: #c62828;
+}
+
+.menu-perfil ul li:last-child a:hover {
+  background-color: #ffebee;
+}
+
+.menu-perfil ul li:nth-child(3) a {
+  color: #e5b900;
+}
+
+.menu-perfil ul li:nth-child(3) a:hover {
+  background-color: #fff8e1;
+}
+
+.menu-perfil ul li a svg {
+  flex-shrink: 0;
+}
+
+.oculto {
+  max-height: 0 !important;
+  overflow: hidden;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+
+/* DASHBOARD Y VALORACIONES */
+.dashboard-section-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e5b900;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.dashboard-cards {
+  margin-bottom: 40px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+.valoracion-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.valoracion-card.destacada {
+  border: 2px solid #e5b900;
+}
+
+.valoracion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+}
+
+.direccion-container {
+  flex: 1;
+}
+
+.direccion-titulo {
+  font-size: 18px;
+  color: #333;
+  margin: 0 0 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.ref-catastral {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.valor-container {
+  text-align: right;
+}
+
+.horquilla-precios {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  width: fit-content;
+  margin: 0 auto 15px auto;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.precio-minimo, .precio-recomendado, .precio-maximo {
+  padding: 15px 12px;
+  text-align: center;
+  min-width: 110px;
+}
+
+.precio-minimo {
+  background-color: #f9f9f9;
+  margin-right: 1px;
+}
+
+.precio-recomendado {
+  background-color: #fff8dc;
+  padding: 15px 20px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  margin: 0 1px;
+}
+
+.precio-maximo {
+  background-color: #f9f9f9;
+  margin-left: 1px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.valor-minimo, .valor-maximo {
+  font-size: 18px;
+  font-weight: 600;
+  color: #444;
+}
+
+.valor {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e5b900;
+  margin: 0;
+}
+
+.fecha-valoracion {
+  font-size: 14px;
+  color: #888;
+  margin: 5px 0 0;
+  text-align: right;
+}
+
+
+/* DATOS CATASTRALES */
+.datos-catastrales {
+  background-color: #fff8dc;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.datos-catastrales h4 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #444;
+}
+
+.datos-catastrales p {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.datos-catastrales .etiqueta-extra {
+  display: inline-block;
+  background-color: #e2c96d;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-right: 6px;
+  font-size: 13px;
+  color: #333;
+}
+
+
+/* ACCIONES Y BOTONES */
+.acciones-valoracion {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #fff;
+}
+
+.btn-accion {
+  padding: 10px 16px;
+  background-color: #e5b900;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn-accion:hover {
+  background-color: #d4a800;
+}
+
+.nueva-valoracion {
+  background-color: #4CAF50;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.nueva-valoracion:hover {
+  background-color: #388E3C;
+}
+
+.btn-rojo {
+  background-color: #d32f2f;
+}
+
+.btn-rojo:hover {
+  background-color: #b71c1c;
+}
+
+.btn-rojo .check-icon {
+  margin-right: 5px;
+}

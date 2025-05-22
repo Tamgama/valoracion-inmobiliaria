@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}¿Cuánto vale tu casa?{% endblock %}</title>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <header class="barra-navegacion">
+    <a href="{{ url_for('index') }}" class="logo-pequeno">
+      <img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="Logo" class="logo"/>
+    </a>
+
+    {% block header_right %}
+    <div class="nav-derecha">
+      {% if current_user.is_authenticated %}
+      <button class="btn-area-cliente" onclick="location.href='{{ url_for('dashboard') }}'">
+        <span class="icono-cliente"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
+        <span class="texto-boton" aria-hidden="true"></span>
+      </button>
+      {% else %}
+      <button class="btn-area-cliente" onclick="location.href='{{ url_for('login') }}'">
+        <span class="icono-cliente"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
+        <span class="texto-boton" aria-hidden="true"></span>
+      </button>
+      {% endif %}
+    </div>
+    {% endblock %}
+  </header>
+
+  <main class="contenedor">
+    {% block content %}{% endblock %}
+  </main>
+  
+  <footer class="footer">
+    {% block footer %}
+    <div class="footer-container">
+      <div class="footer-content">
+        <!-- Logo y descripción -->
+        <div class="footer-col footer-col-wide">
+          <p>
+            Inmobiliaria en Murcia especializada en saber cuánto cuesta tu casa.
+            Valoramos tu propiedad <strong>100% GRATIS y en solo 3 minutos</strong>.
+            Expertos en Vista Alegre, Santa María de Gracia y La Flota para vender vivienda al mejor precio.
+          </p>
+        </div>
+  
+        <!-- Enlaces rápidos -->
+        <div class="footer-col">
+          <h3>Enlaces Rápidos</h3>
+          <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('index') }}">Valoración</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('dashboard') }}">Mi cuenta</a></li>
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
+            <li><a href="{{ url_for('register') }}">Registrarse</a></li>
+            {% endif %}
+          </ul>
+        </div>
+  
+        <!-- Legal -->
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="{{ url_for('politica_privacidad') }}">Política de Privacidad</a></li>
+            <li><a href="{{ url_for('politica_cookies') }}">Política de Cookies</a></li>
+            <li><a href="{{ url_for('terminos_condiciones') }}">Términos y Condiciones</a></li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Información final -->
+      <div class="footer-bottom">
+        <p><strong>Influenet Marketing SL</strong> | C/ Maestra María Maroto, 6, Vista Alegre, Murcia</p>
+        <p>
+          <a href="mailto:pro@promurcia.com">pro@promurcia.com</a> |
+          <a href="tel:+34622337098">+34 622 337 098</a>
+        </p>
+        <p>&copy; 2025 Influenet Marketing SL. Todos los derechos reservados.</p>
+      </div>
+    </div>
+    {% endblock %}
+  </footer>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true
+        });
+      }
+    });
+  </script>
+</body>
+</html>

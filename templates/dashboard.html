@@ -1,0 +1,197 @@
+{% extends 'base.html' %} {% block title %}Área de Cliente - ¿Cuánto vale tu
+casa?{% endblock %} {% block extra_head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/dashboard.css') }}"
+/>
+<script
+  defer
+  src="{{ url_for('static', filename='js/dashboard.js') }}"
+></script>
+<script
+  defer
+  src="{{ url_for('static', filename='js/vender.js') }}"
+></script>
+{% endblock %} {% block header_right %}
+<div class="perfil-menu">
+  <button id="btn-perfil" class="btn-perfil">
+    <span class="icono-cliente">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+    </span>
+    <span class="nombre-usuario">{{ current_user.username }}</span>
+  </button>
+  <div id="menu-perfil" class="menu-perfil oculto">
+    <ul>
+      <li><a href="#" id="editar-perfil">Editar perfil</a></li>
+      <li><a href="#" id="cambiar-password">Cambiar contraseña</a></li>
+      <li>
+        <a href="tel:+34622337098" id="contacta-con-nosotros"
+          >Contacta con nosotros</a
+        >
+      </li>
+      <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
+    </ul>
+  </div>
+</div>
+{% endblock %} {% block content %}
+<div class="bloque-principal">
+  <!-- Valoraciones -->
+  <div class="dashboard-cards">
+    <div class="dashboard-header">
+      <div>
+        <h2 class="dashboard-section-title">Mis valoraciones inmobiliarias</h2>
+        <p style="margin-bottom: 20px; color: #777; text-align: center;">
+          Encuentra aquí todas tus valoraciones realizadas
+        </p>
+      </div>
+    </div>
+
+    {% if valuations %} {% for val in valuations %}
+    <div class="valoracion-card destacada">
+      <div class="valoracion-header">
+        <div class="direccion-container">
+          <h3 class="direccion-titulo mayusculas">{{ val.direccion }}</h3>
+          <p class="fecha-valoracion">{{ val.fecha }}</p>
+        </div>
+      </div>
+
+      <div class="valor-container">
+        <div class="horquilla-precios">
+          <div class="precio-minimo">
+            <span class="label">Mínimo</span>
+            <span class="valor-minimo"
+              >{{ '{:,.0f}'.format(val.estimated_value * 0.9) }}€</span
+            >
+          </div>
+          <div class="precio-recomendado">
+            <span class="label">Recomendado</span>
+            <span class="valor">{{ val.valoracion }}</span>
+          </div>
+          <div class="precio-maximo">
+            <span class="label">Máximo</span>
+            <span class="valor-maximo"
+              >{{ '{:,.0f}'.format(val.estimated_value * 1.1) }}€</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="datos-catastrales">
+        <h4>Datos Catastrales</h4>
+        <p><strong>Ref. catastral:</strong> {{ val.ref_catastral }}</p>
+        <p><strong>Clase:</strong> {{ val.clase }}</p>
+        <p><strong>Uso principal:</strong> {{ val.uso }}</p>
+        <p><strong>Superficie:</strong> {{ val.superficie }} m²</p>
+        <p><strong>Año construcción:</strong> {{ val.año }}</p>
+        <p>
+          <strong>Extras:</strong>
+          {% for extra in val.extras %}
+          <span class="etiqueta-extra">{{ extra }}</span>
+          {% endfor %}
+        </p>
+      </div>
+
+      <div class="acciones-valoracion">
+        <a href="{{ url_for('index') }}" class="btn-accion nueva-valoracion"
+          >Nueva valoración</a
+        >
+        <a href="{{ url_for('toggle_wants_to_sell') }}" class="btn-accion btn-rojo">
+          {% if current_user.wants_to_sell %}
+          <span class="check-icon">✓</span> Te llamaremos
+          {% else %}
+          ¡Quiero vender mi casa!
+          {% endif %}
+        </a>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <p style="text-align: center; margin-top: 20px">
+      Todavía no has realizado ninguna valoración.
+    </p>
+    {% endif %}
+  </div>
+
+  <!-- Sección editar perfil -->
+  <div id="seccion-editar" class="bloque-principal oculto">
+    <h2>Editar Perfil</h2>
+    <form id="form-editar-perfil">
+      <label
+        >Nombre:
+        <input
+          type="text"
+          id="nombre"
+          placeholder="Tu nombre"
+          value="{{ current_user.username }}"
+          required
+        />
+      </label>
+      <label
+        >Teléfono:
+        <input
+          type="tel"
+          id="telefono"
+          placeholder="123 456 789"
+          value="{{ current_user.phone }}"
+          required
+        />
+      </label>
+      <button type="submit">Guardar cambios</button>
+      <div
+        id="mensaje-exito"
+        class="oculto"
+        style="margin-top: 10px; color: green; font-weight: bold"
+      >
+        ✅ Perfil actualizado con éxito
+      </div>
+    </form>
+  </div>
+
+  <!-- Sección cambiar contraseña -->
+  <div id="seccion-password" class="bloque-principal oculto">
+    <h2>Cambiar Contraseña</h2>
+    <form id="form-cambiar-password">
+      <label
+        >Contraseña actual:
+        <input type="password" id="current-password" required />
+      </label>
+      <label
+        >Nueva contraseña:
+        <input type="password" id="new-password" required />
+      </label>
+      <button type="submit">Cambiar contraseña</button>
+      <div
+        id="mensaje-exito-password"
+        class="oculto"
+        style="margin-top: 10px; color: green; font-weight: bold"
+      >
+        ✅ Contraseña actualizada con éxito
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %} {% block footer %}
+<div class="footer-bottom">
+  <p>
+    <strong>Promurcia Inmobiliarios</strong> | C/ Maestra María Maroto, 6, Vista
+    Alegre, Murcia
+  </p>
+  <p>
+    <a href="mailto:pro@promurcia.com">pro@promurcia.com</a> |
+    <a href="tel:+34622337098">+34 622 337 098</a>
+  </p>
+  <p>&copy; 2025 Promurcia Inmobiliarios. Todos los derechos reservados.</p>
+</div>
+{% endblock %}

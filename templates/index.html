@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="bloque-principal" data-aos="zoom-in">
+  <h2>¿Cuánto vale mi casa?</h2>
+  <p class="subtitulo">Tasación especializada de viviendas en Vistalegre, online y gratuita</p>
+
+  <form id="form-direccion" onsubmit="return false">
+    <h3>Busca tu dirección</h3>
+    <div class="direccion">
+      <div id="direccion" style="flex: 2; position: relative;">
+        <input type="text" id="calle" placeholder="Ej: Calle Mayor" required />
+        <div id="resultados-catastro"></div>
+      </div>
+      <input type="number" id="numero" placeholder="0" required />
+    </div>
+    <button type="button" id="consultar-principal">Consultar</button>
+
+    <div id="formulario-segundo" class="oculto" style="margin-top: 20px;">
+      <div id="selectores-dinamicos" style="max-width: 100%; overflow-x: auto;"></div>
+      <div id="detalles-inmueble" class="oculto" style="width: 100%; margin-top: 1.5em; padding: 15px; background-color: #f8f8f8; border-radius: 8px;"></div>
+    </div>
+
+    <div id="extras-adicionales" class="oculto">
+      <h3>¿Tu vivienda tiene alguna de estas características?</h3>
+      <div class="botones-extras">
+        <button type="button" class="btn-extra" data-extra="ascensor">Ascensor</button>
+        <button type="button" class="btn-extra" data-extra="garaje">Garaje</button>
+        <button type="button" class="btn-extra" data-extra="terraza">Terraza</button>
+        <button type="button" class="btn-extra" data-extra="piscina">Piscina</button>
+        <button type="button" class="btn-extra" data-extra="trastero">Trastero</button>
+        <button type="button" class="btn-extra" data-extra="amueblado">Amueblado</button>
+      </div>
+
+      <div id="formulario-caracteristicas" style="margin-top: 20px;">
+        <h3>Características adicionales</h3>
+
+        <div class="extras-grid">
+          <div class="caracteristica-item">
+            <label for="estado-conservacion">Estado de conservación:</label>
+            <select id="estado-conservacion" required>
+              <option value="normal">Normal</option>
+              <option value="excelente">Perfecto</option>
+              <option value="malo">A reformar</option>
+            </select>
+          </div>
+
+          <div class="caracteristica-item">
+            <label for="tipo-propiedad">Tipo de propiedad:</label>
+            <select id="tipo-propiedad" required>
+              <option value="piso">Piso</option>
+              <option value="dúplex">Dúplex</option>
+              <option value="ático">Ático</option>
+              <option value="chalet">Chalet / Casa</option>
+              <option value="otros">Otros</option>
+            </select>
+          </div>
+
+          <div class="caracteristica-item">
+            <label for="habitaciones">Número de habitaciones:</label>
+            <select id="habitaciones" required>
+              <option value="1">1 habitación</option>
+              <option value="2">2 habitaciones</option>
+              <option value="3" selected>3 habitaciones</option>
+              <option value="4">4 habitaciones</option>
+              <option value="5">5 o más habitaciones</option>
+            </select>
+          </div>
+
+          <div class="caracteristica-item">
+            <label for="banos">Baños:</label>
+            <select id="banos" required>
+              <option value="1">1 baño</option>
+              <option value="2">2 baños</option>
+              <option value="3" selected>3 o más baños</option>
+            </select>
+          </div>
+
+          <div class="caracteristica-item">
+            <label for="orientacion">Orientación:</label>
+            <select id="orientacion">
+              <option value="norte">Norte</option>
+              <option value="sur">Sur</option>
+              <option value="este">Este</option>
+              <option value="oeste">Oeste</option>
+              <option value="multiple">Varias orientaciones</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="resultado-valoracion" class="oculto" style="margin-top: 30px;">
+        <button id="calcular-valoracion">Calcular valor estimado</button>
+        <p id="valor-estimado" style="font-size: 1.2em; font-weight: bold; margin-top: 10px;"></p>
+      </div>
+    </div>
+  </form>
+
+  </div>
+
+
+  <div class="especialistas" data-aos="fade-up" data-aos-delay="300">
+    <h3>Especialistas en Vista Alegre</h3>
+    <p>
+      Nuestro sistema está especializado en el mercado inmobiliario de <strong>Vista Alegre, Santa María de Gracia y La Flota</strong> de Murcia,
+      proporcionando valoraciones precisas basadas en transacciones reales.
+    </p>
+    <p>
+      A diferencia de otras valoraciones genéricas, nuestro algoritmo considera factores específicos de cada barrio,
+      la evolución de precios en cada calle y las características particulares de tu vivienda.
+    </p>
+  </div>
+</div>
+{% endblock %}

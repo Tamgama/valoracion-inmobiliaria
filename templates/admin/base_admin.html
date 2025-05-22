@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Panel de Administración{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}" />
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}
+
+{% block header_right %}
+<div class="admin-nav">
+    <a href="{{ url_for('admin_dashboard') }}">Usuarios</a>
+    <a href="{{ url_for('admin_logout') }}" class="logout">Cerrar Sesión</a>
+</div>
+{% endblock %}
+
+{% block footer %}
+<div class="footer-container">
+    <div class="footer-bottom">
+        <p><strong>Promurcia Inmobiliarios</strong> | Panel de Administración</p>
+        <p>&copy; 2025 Promurcia Inmobiliarios. Todos los derechos reservados.</p>
+    </div>
+</div>
+{% endblock %}

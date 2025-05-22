@@ -1,0 +1,108 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Detalle de Usuario - Panel de Administración{% endblock %}
+
+{% block content %}
+<div class="admin-container">
+    <div class="admin-header">
+        <div class="admin-title">
+            <img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="Logo">
+            <h1>Panel de Administración - Detalle de Usuario</h1>
+        </div>
+    </div>
+    
+    <a href="{{ url_for('admin_dashboard') }}" class="back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Volver al listado
+    </a>
+    
+    <div class="user-profile">
+        <h2>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            Información del Usuario
+        </h2>
+        <div class="user-profile-grid">
+            <div class="user-profile-item">
+                <div class="user-profile-label">ID</div>
+                <div class="user-profile-value">{{ user.id }}</div>
+            </div>
+            <div class="user-profile-item">
+                <div class="user-profile-label">Nombre</div>
+                <div class="user-profile-value">{{ user.username }}</div>
+            </div>
+            <div class="user-profile-item">
+                <div class="user-profile-label">Teléfono</div>
+                <div class="user-profile-value">{{ user.phone }}</div>
+            </div>
+
+            <div class="user-profile-item">
+                <div class="user-profile-label">Fecha de Registro</div>
+                <div class="user-profile-value">{{ user.created_at.strftime('%d/%m/%Y %H:%M') }}</div>
+            </div>
+            <div class="user-profile-item">
+                <div class="user-profile-label">Valoraciones Realizadas</div>
+                <div class="user-profile-value">{{ valuations|length }}</div>
+            </div>
+            <div class="user-profile-item">
+                <div class="user-profile-label">Quiere Vender</div>
+                <div class="user-profile-value">
+                    {% if user.wants_to_sell %}
+                    <span class="wants-to-sell yes">Sí</span>
+                    {% else %}
+                    <span class="wants-to-sell no">No</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2>Valoraciones Inmobiliarias</h2>
+    
+    {% if valuations %}
+    <div class="valuation-cards">
+        {% for val in valuations %}
+        <div class="valuation-card">
+            <div class="valuation-header">
+                <h3 class="valuation-address">{{ val.direccion }}</h3>
+                <p class="valuation-ref">Ref. catastral: {{ val.ref_catastral }}</p>
+                <div class="valuation-price">{{ val.valoracion }}</div>
+                <div class="valuation-date">Realizada el {{ val.fecha }}</div>
+            </div>
+            <div class="valuation-body">
+                <div class="valuation-detail">
+                    <div class="valuation-item"><strong>{{ val.superficie }} m²</strong></div>
+                    <div class="valuation-item"><strong>{{ val.tipo }}</strong></div>
+                    <div class="valuation-item"><strong>Año:</strong> {{ val.año }}</div>
+                    <div class="valuation-item"><strong>{{ val.habitaciones }} hab</strong></div>
+                    <div class="valuation-item"><strong>{{ val.baños }} baños</strong></div>
+                </div>
+                
+                <div class="valuation-section-title">Estado</div>
+                <div class="valuation-item">{{ val.estado }}</div>
+                
+                {% if val.extras %}
+                <div class="valuation-section-title">Extras</div>
+                <div class="valuation-extras">
+                    {% for extra in val.extras %}
+                        {% if extra %}
+                            <span class="valuation-extra">{{ extra }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-valuations">
+        Este usuario no ha realizado ninguna valoración inmobiliaria.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

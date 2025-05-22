@@ -1,0 +1,59 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Panel de Administración - Valoraciones Inmobiliarias{% endblock %}
+
+{% block content %}
+<div class="admin-container">
+    <div class="admin-header">
+        <div class="admin-title">
+            <h1>Panel de Administración</h1>
+        </div>
+    </div>
+    
+    <div class="user-count">
+        <strong>{{ users|length }}</strong> usuarios registrados en el sistema
+    </div>
+    
+    {% if users %}
+    <table>
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Teléfono</th>
+                <th>Fecha Registro</th>
+                <th>Valoraciones</th>
+                <th>Quiere Vender</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>
+                    {{ user.username }}
+                    <div class="user-id">ID: {{ user.id }}</div>
+                </td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.created_at }}</td>
+                <td>{{ user.valuation_count }}</td>
+                <td>
+                    {% if user.wants_to_sell %}
+                    <span class="wants-to-sell yes">Sí</span>
+                    {% else %}
+                    <span class="wants-to-sell no">No</span>
+                    {% endif %}
+                </td>
+                <td class="user-actions">
+                    <a href="{{ url_for('admin_user_detail', user_id=user.id) }}" class="btn btn-view">Ver valoraciones</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="no-users">
+        No hay usuarios registrados en el sistema.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

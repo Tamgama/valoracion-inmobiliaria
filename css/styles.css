@@ -1,0 +1,867 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #fff;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===============================
+   LAYOUT GENERAL
+   =============================== */
+
+.barra-navegacion {
+  background-color: #5e5e5e;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+
+
+.contenedor {
+  flex: 1;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+.footer {
+  background-color: #5e5e5e;
+  color: #fff;
+  padding: 40px 20px 20px;
+  font-size: 14px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.footer-col {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.footer-col-wide {
+  flex: 2 1 400px;
+}
+
+.footer-logo {
+  height: 40px;
+  margin-bottom: 15px;
+}
+
+.footer-col h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #f4c542;
+}
+
+.footer-col p,
+.footer-col ul {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #5e5e5e;
+  padding-top: 20px;
+  color: #aaa;
+}
+
+.footer-bottom a {
+  color: #f4c542;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* ===============================
+   COMPONENTES
+   =============================== */
+
+
+/* Botón específico */
+.btn-area-cliente {
+  background-color: #f4c542;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #333;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-area-cliente:hover {
+  background-color: #af8d03;
+  transform: scale(1.05);
+}
+
+.icono-cliente {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo */
+.logo {
+  height: 40px;
+}
+
+/* Inputs */
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   FORMULARIO DIRECCIÓN HOMOGENEIZADO
+   =============================== */
+
+#form-direccion .linea-direccion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+  
+#direccion {
+  flex: 2;
+  position: relative;
+  width: 100%;
+}
+  
+#numero-form {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+  
+#numero-form input {
+  width: 60px;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/* Para Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Para Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+ 
+/* Resultados sugerencias */
+.direccion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  flex-wrap: nowrap; /* Evitar que los elementos se desplacen a la siguiente línea */
+}
+
+#resultados-catastro {
+  position: absolute;
+  top: 100%; /* Justo debajo del input */
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 999;
+  margin-top: 2px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Opcional, pero le da un buen efecto */
+}
+
+#resultados-catastro div {
+  padding: 8px;
+  cursor: pointer;
+}
+
+#resultados-catastro div:hover {
+  background-color: #f4c542;
+  color: #333;
+  font-weight: bold;
+}
+
+  
+.direccion input[type="text"] {
+  flex: 2;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.direccion input[type="number"] {
+  width: 70px;
+  max-width: 70px;
+  min-width: 70px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  flex-shrink: 0; /* Evita que se comprima */
+}
+
+#extras-adicionales {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* Estilos para el modal de registro/login */
+.modal-registro {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-contenido {
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.modal-cabecera {
+  background-color: #f7d43e;
+  color: #333;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-cabecera h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.cerrar-modal {
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.modal-cuerpo {
+  padding: 20px;
+}
+
+.form-registro {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.campo-formulario label {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.campo-formulario input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.login-link {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.login-link a {
+  color: #ffc800;
+  text-decoration: underline;
+}
+
+.botones-extras {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  background-color: #fff9e6; /* Fondo amarillo claro */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #f4e8c1;
+}
+
+.btn-extra {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+}
+
+.btn-extra:hover {
+  background-color: #e8e8e8;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-extra.seleccionado {
+  background-color: #f4c542;
+  color: #333;
+  border-color: #d6a832;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.btn-extra.seleccionado:before {
+  content: "✓ ";
+  margin-right: 5px;
+}
+
+#formulario-caracteristicas {
+  margin-top: 20px;
+  text-align: left;
+  background-color: #fff9e6; /* Fondo amarillo claro */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #f4e8c1;
+}
+
+#formulario-caracteristicas label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+#formulario-caracteristicas select,
+#formulario-caracteristicas input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Estilos para los ítems de características */
+.caracteristica-item {
+  margin-bottom: 15px;
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.caracteristica-item label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+
+/* Solo los botones de formularios ocupan todo el ancho */
+form button {
+  width: 100%;
+  background-color: #f4c542;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+form button:hover {
+  background-color: #af8d03;
+  transform: scale(1.05);
+}
+
+form-direccion h3{
+  width: 100%;
+}
+
+
+/* ===============================
+SECCIONES
+=============================== */
+
+/* Bloque principal */
+.bloque-principal {
+  background-color: #ebeaea;
+  border-radius: 16px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.bloque-principal h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: #222;
+}
+
+.bloque-principal h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #111;
+}
+
+.subtitulo {
+  color: #555;
+  margin-bottom: 30px;
+}
+
+
+
+/* Especialistas */
+.especialistas {
+  background-color: #ebeaea;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+}
+
+.especialistas h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.especialistas p {
+  color: #424242;
+  line-height: 1.5;
+}
+
+/* Edición de perfil */
+#form-editar-perfil label {
+  display: block;
+  text-align: left;
+  margin: 10px 0;
+}
+
+#form-editar-perfil input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+/* Menú desplegable perfil */
+.perfil-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-perfil {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: #f4c542;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  width: 180px;
+}
+
+.menu-perfil ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-perfil li a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu-perfil li a:hover {
+  background-color: #f4c542;
+  color: #000;
+}
+
+/* ===============================
+   TARJETA DE VALORACIÓN
+   =============================== */
+
+.ultima-valoracion {
+  margin-bottom: 30px;
+}
+
+.ultima-valoracion h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.card-valoracion {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+.cabecera-valoracion {
+  background-color: #f4c542;
+  color: #333;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cabecera-valoracion .direccion {
+  flex: 2;
+  text-align: left;
+}
+
+.cabecera-valoracion .direccion h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.2rem;
+}
+
+.cabecera-valoracion .ref-catastral {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.cabecera-valoracion .precio {
+  text-align: right;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cabecera-valoracion .valor {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.cabecera-valoracion .fecha {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.detalles-valoracion {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  text-align: left;
+}
+
+.detalle {
+  margin-bottom: 5px;
+}
+
+.detalle strong {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.detalle.extras {
+  grid-column: 1 / -1;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  margin-top: 10px;
+}
+
+.etiqueta {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.acciones-valoracion {
+  background-color: #f9f9f9;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid #eee;
+}
+
+.btn-accion {
+  background-color: #f4c542;
+  color: #333;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.btn-accion:hover {
+  background-color: #e4b72f;
+}
+
+/* ===============================
+   UTILIDADES
+   =============================== */
+
+.oculto {
+  display: none;
+}
+
+/* Auth Forms */
+.auth-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ebeaea;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-error {
+  color: #d9534f;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.auth-links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.auth-links a {
+  color: #5e5e5e;
+  text-decoration: none;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+.success-message {
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.error-message {
+  background-color: #f2dede;
+  color: #a94442;
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* ===============================
+   MEDIA QUERIES
+   =============================== */
+
+/* Ajuste específico para que el texto permanezca oculto en pantallas pequeñas */
+@media (max-width: 991px) {
+  .texto-boton {
+    display: none !important;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    position: absolute;
+  }
+  
+  .btn-area-cliente {
+    padding: 8px;
+  }
+  
+  .icono-cliente svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .barra-navegacion {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .btn-area-cliente {
+    padding: 8px;
+  }
+  
+  .icono-cliente svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Mantenemos la dirección en flex row incluso en móvil */
+  .direccion {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .direccion input[type="number"] {
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+  }
+  
+  #direccion {
+    flex: 1; /* Toma el espacio disponible */
+  }
+}
+
+@media (max-width: 480px) {
+  .contenedor {
+    padding: 10px;
+  }
+  
+  .bloque-principal {
+    padding: 20px 15px;
+  }
+  
+  .botones-extras {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-extra {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .btn-area-cliente {
+    padding: 8px 12px;
+    font-size: 1.4em;
+    border-radius: 5px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
